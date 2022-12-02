@@ -114,7 +114,6 @@ class BookController extends Controller
 
         $data = $request->all();
         try {
-            
             $file = $request->file('cover')->store('img');
             Storage::delete($book->cover);
             $data['cover'] = $file;
