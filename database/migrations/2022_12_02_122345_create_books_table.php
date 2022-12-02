@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('judul');
             $table->text('isi');
             $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->integer('total_pembaca');
             $table->date('tanggal');
             $table->string('cover');
             $table->boolean('terbaca')->default(0);
