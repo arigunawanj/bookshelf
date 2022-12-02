@@ -31,12 +31,14 @@
                                         <td>{{ $item->isi }}</td>
                                         <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->penulis }}</td>
-                                        <td>{{ $item->total_pembaca }}</td>
+                                        <td>{{ DB::table('totals')->where('book_id', $item->id)->count() }}</td>
                                         <td>{{ $item->category->name }}</td>
                                         <td><img src="{{ asset('storage/' . $item->cover ) }}" width="100px" alt="" srcset=""></td>
                                         <td>
-                                            <a href="" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editdata{{ $item->id }}">Edit</a>
-                                            <a href="/book/{{ $item->id }}" class="btn btn-danger">Hapus</a>
+                                            @if (Auth::user()->role == "Admin")
+                                                <a href="" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editdata{{ $item->id }}">Edit</a>
+                                                <a href="/book/{{ $item->id }}" class="btn btn-danger">Hapus</a>
+                                            @endif
                                             @if ($item->tampil == 1)
                                                 <a href="/tampil/{{ $item->id }}" class="btn btn-warning">Hide</a>
                                             @else

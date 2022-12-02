@@ -20,7 +20,7 @@ class Admin
         if(Auth::user()->role == "Admin"){
             return $next($request);
         } else {
-            return redirect('beranda');
+            return redirect('/');
         }
     }
 }

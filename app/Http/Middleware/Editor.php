@@ -17,10 +17,10 @@ class Editor
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role == "Editor"){
+        if(Auth::user()->role == "Editor" || Auth::user()->role == "Admin"){
             return $next($request);
         } else {
-            return redirect('beranda');
+            return redirect('/');
         }
     }
 }

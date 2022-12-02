@@ -31,15 +31,19 @@ Route::middleware(['auth', 'Admin'])->group(function () {
     Route::put('ubah/{user}', [UserController::class, 'ubahData']);
 });
 
-Route::middleware('auth')->group(function () {
+
+Route::middleware(['auth', 'Editor'])->group(function () {
     Route::resource('book', BookController::class);
     Route::get('book/{book}',[BookController::class, 'destroy']);
     Route::get('tampil/{book}', [BookController::class, 'hide']);
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('read/{id}', [BerandaController::class, 'read']);
+});
+
 Route::get('/', [BerandaController::class, 'Beranda']);
 Route::get('{id}', [BerandaController::class, 'kategori']);
-Route::get('read/{id}', [BerandaController::class, 'read']);
 
 
 

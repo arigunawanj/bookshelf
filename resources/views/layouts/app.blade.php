@@ -41,20 +41,22 @@
                     <ul class="navbar-nav me-auto">
                         @guest
                         @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Beranda</a>
-                        </li>
-                        @if (Auth::user()->role == "Admin")
                             <li class="nav-item">
-                                <a class="nav-link" href="/user">Data Pengguna</a>
+                                <a class="nav-link" href="/">Beranda</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/category">Data Kategori</a>
-                            </li>
-                        @endif
-                        <li class="nav-item">
-                            <a class="nav-link" href="/book">Data Buku</a>
-                        </li>
+                            @if (Auth::user()->role == 'Admin')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/user">Data Pengguna</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/category">Data Kategori</a>
+                                </li>
+                            @endif
+                            @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Editor')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/book">Data Buku</a>
+                                </li>
+                            @endif
                         @endguest
                     </ul>
 
@@ -74,7 +76,6 @@
                                 </li>
                             @endif
                         @else
-
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
