@@ -91,14 +91,37 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        // $data = $request->all();
+
+        // if($request->hasFile('cover')){
+        //     $file = $request->file('cover')->store('img');
+        //     Storage::delete($book->cover);
+
+        //     $data['cover'] = $file;
+        //     $data['user_id'] = Auth::user()->id;
+        //     $book->update($data);
+        // } else {
+        //     $book->update([
+        //         'judul' => $request->judul,
+        //         'isi'=> $request->isi,
+        //         'penulis' => $request->penulis,
+        //         'tanggal' => $request->tanggal,
+        //         'user_id' => Auth::user()->id,
+        //         'category_id' => $request->category_id
+        //     ]);
+        // }
+        // return redirect('book');
+
         $data = $request->all();
-        if($request->hasFile('cover')){
+        try {
+            
             $file = $request->file('cover')->store('img');
             Storage::delete($book->cover);
             $data['cover'] = $file;
             $data['user_id'] = Auth::user()->id;
             $book->update($data);
-        } else {
+
+        } catch (\Throwable $th) {
             $book->update([
                 'judul' => $request->judul,
                 'isi'=> $request->isi,
@@ -109,6 +132,7 @@ class BookController extends Controller
             ]);
         }
         return redirect('book');
+
 
     }
 
