@@ -46,7 +46,7 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
-        'role' => 'Admin'
+        'role' => 'User'
     ];
 
     public function book()
