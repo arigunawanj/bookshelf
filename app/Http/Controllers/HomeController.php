@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\Total;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $book = Book::where('tampil', 1)->get();
+        $category = Category::all();
+        $total = Total::all();
+        return view('beranda', compact('book', 'category', 'total'));
     }
 }

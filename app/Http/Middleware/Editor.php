@@ -20,7 +20,7 @@ class Editor
         if(Auth::user()->role == "Editor"){
             return $next($request);
         } else {
-            return redirect('home');
+            return redirect('beranda');
         }
     }
 }
