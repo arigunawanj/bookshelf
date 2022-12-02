@@ -28,6 +28,7 @@
                         <p>Total Pembaca : <span
                                 class="badge bg-danger">{{ DB::table('totals')->where('book_id', $item->id)->count() }}</span>
                         </p>
+                        <p>Editor : <span class="badge bg-dark">{{ $item->user->name }}</span></p>
                         <blockquote class="blockquote mb-2">
                             <footer class="blockquote-footer"><cite title="Source Title">{{ $item->penulis }}</cite>
                             </footer>
