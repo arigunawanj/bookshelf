@@ -32,7 +32,7 @@
                             </footer>
                         </blockquote>
                         @guest
-                           <a href="/login" class="btn btn-primary">Baca lebih detail</a>
+                        <a href="read/{{ $item->id }}" class="btn btn-primary">Baca Buku Ini</a>
                         @else
                             @if (DB::table('totals')->where('book_id', $item->id)->where('user_id', Auth::user()->id)->exists())
                                 <a class="btn btn-warning" href="read/{{ $item->id }}">Buku Sudah Dibaca</a>
