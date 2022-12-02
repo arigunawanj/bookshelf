@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BerandaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
@@ -16,9 +17,9 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
 
 Auth::routes();
 
@@ -28,5 +29,7 @@ Route::get('category/{category}',[CategoryController::class, 'destroy']);
 Route::resource('book', BookController::class);
 Route::get('book/{book}',[BookController::class, 'destroy']);
 Route::get('tampil/{book}', [BookController::class, 'hide']);
+
+Route::get('/', [BerandaController::class, 'Beranda']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
