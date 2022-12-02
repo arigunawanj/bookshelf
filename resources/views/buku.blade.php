@@ -7,7 +7,7 @@
                 <a class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#tambahdata">Tambah
                     Data</a>
                 <div class="card">
-                    <div class="card-header">Data Kategori</div>
+                    <div class="card-header">Data Buku</div>
                     <div class="card-body">
                         <table class="table">
                             <thead>
@@ -17,6 +17,7 @@
                                     <th>Isi</th>
                                     <th>Tanggal</th>
                                     <th>Penulis</th>
+                                    <th>Editor</th>
                                     <th>Total Pembaca</th>
                                     <th>Kategori</th>
                                     <th>Cover</th>
@@ -31,6 +32,7 @@
                                         <td>{{ $item->isi }}</td>
                                         <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->penulis }}</td>
+                                        <td>{{ $item->user->name }}</td>
                                         <td>{{ DB::table('totals')->where('book_id', $item->id)->count() }}</td>
                                         <td>{{ $item->category->name }}</td>
                                         <td><img src="{{ asset('storage/' . $item->cover ) }}" width="100px" alt="" srcset=""></td>

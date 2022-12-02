@@ -17,7 +17,12 @@ class BookController extends Controller
      */
     public function index()
     {
-        $book = Book::all();
+        if(Auth::user()->role == "Admin"){
+            $book = Book::all();
+        } else {
+            $book = Book::where('user_id', Auth::user()->id)->get();
+        }
+
         $category = Category::all();
 
         return view('buku', compact('book', 'category'));
@@ -46,6 +51,7 @@ class BookController extends Controller
         $file = $request->file('cover')->store('img');
 
         $data['cover'] = $file;
+        $data['user_id'] = Auth::user()->id;
 
         Book::create($data);
 
@@ -90,6 +96,7 @@ class BookController extends Controller
             $file = $request->file('cover')->store('img');
             Storage::delete($book->cover);
             $data['cover'] = $file;
+            $data['user_id'] = Auth::user()->id;
             $book->update($data);
         } else {
             $book->update([
@@ -97,6 +104,7 @@ class BookController extends Controller
                 'isi'=> $request->isi,
                 'penulis' => $request->penulis,
                 'tanggal' => $request->tanggal,
+                'user_id' => Auth::user()->id,
                 'category_id' => $request->category_id
             ]);
         }

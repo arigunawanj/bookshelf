@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('cover');
             $table->boolean('tampil')->default(1);
             $table->foreignId('category_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
