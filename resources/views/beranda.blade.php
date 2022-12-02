@@ -2,6 +2,18 @@
 
 @section('content')
 <div class="container">
+    <div class="dropdown mb-3">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Kategori
+        </a>
+        
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/">Semua Kategori</a></li>
+            @foreach ($category as $data)
+            <li><a class="dropdown-item" href="/{{ $data->id }}">{{ $data->name }}</a></li>
+            @endforeach
+        </ul>
+      </div>
     <div class="row justify-content-center">
         @foreach ($book as $item)
             <div class="card ms-3" style="width: 25rem;">
@@ -16,7 +28,11 @@
                         <footer class="blockquote-footer"><cite title="Source Title">{{ $item->user->name }}</cite>
                         </footer>
                     </blockquote>
-                    <a href="detail/{{ $item->id }}" class="btn btn-primary">Detail</a>
+                    @if (Total::where('book_id', $item->id)->exists())
+                    <a class="btn btn-warning">Buku Sudah Dibaca</a>                        
+                    @else
+                    <a href="read/{{ $item->id }}" class="btn btn-primary">Baca Buku Ini</a>
+                    @endif
                 </div>
             </div>
         @endforeach

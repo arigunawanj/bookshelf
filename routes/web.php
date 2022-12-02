@@ -31,5 +31,7 @@ Route::get('book/{book}',[BookController::class, 'destroy']);
 Route::get('tampil/{book}', [BookController::class, 'hide']);
 
 Route::get('/', [BerandaController::class, 'Beranda']);
+Route::get('{id}', [BerandaController::class, 'kategori']);
+Route::get('read/{id}', [BerandaController::class, 'read']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

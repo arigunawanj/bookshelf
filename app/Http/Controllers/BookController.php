@@ -47,7 +47,7 @@ class BookController extends Controller
 
         $data['cover'] = $file;
         $data['user_id'] = Auth::user()->id;
-        $data['total_pembaca'] = 1;
+        // $data['total_pembaca'] = 1;
 
         Book::create($data);
 
