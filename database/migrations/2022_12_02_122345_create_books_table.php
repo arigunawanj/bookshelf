@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->date('tanggal');
             $table->string('cover');
-            $table->boolean('terbaca')->default(0);
             $table->boolean('tampil')->default(1);
             $table->foreignId('category_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
