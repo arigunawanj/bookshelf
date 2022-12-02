@@ -37,10 +37,8 @@
                                         <td>{{ $item->category->name }}</td>
                                         <td><img src="{{ asset('storage/' . $item->cover ) }}" width="100px" alt="" srcset=""></td>
                                         <td>
-                                            @if (Auth::user()->role == "Admin")
                                                 <a href="" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editdata{{ $item->id }}">Edit</a>
                                                 <a href="/book/{{ $item->id }}" class="btn btn-danger">Hapus</a>
-                                            @endif
                                             @if ($item->tampil == 1)
                                                 <a href="/tampil/{{ $item->id }}" class="btn btn-warning">Hide</a>
                                             @else
