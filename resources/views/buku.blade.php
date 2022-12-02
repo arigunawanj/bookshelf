@@ -16,7 +16,7 @@
                                     <th>Judul Buku</th>
                                     <th>Isi</th>
                                     <th>Tanggal</th>
-                                    <th>Pengguna</th>
+                                    <th>Penulis</th>
                                     <th>Total Pembaca</th>
                                     <th>Kategori</th>
                                     <th>Cover</th>
@@ -30,7 +30,7 @@
                                         <td>{{ $item->judul }}</td>
                                         <td>{{ $item->isi }}</td>
                                         <td>{{ $item->tanggal }}</td>
-                                        <td>{{ $item->user->name }}</td>
+                                        <td>{{ $item->penulis }}</td>
                                         <td>{{ $item->total_pembaca }}</td>
                                         <td>{{ $item->category->name }}</td>
                                         <td><img src="{{ asset('storage/' . $item->cover ) }}" width="100px" alt="" srcset=""></td>
@@ -68,6 +68,10 @@
                                                         <div class="mb-3">
                                                             <label for="">Isi</label>
                                                             <textarea name="isi" class="form-control" id="" cols="30" rows="10">{{ $item->isi }}</textarea>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="">Penulis</label>
+                                                            <input type="text" name="penulis" value="{{ $item->penulis }}" class="form-control" id="">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="">Tanggal</label>
@@ -123,6 +127,10 @@
                         <div class="mb-3">
                             <label for="">Isi</label>
                             <textarea name="isi" class="form-control" id="" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Penulis</label>
+                            <input type="text" name="penulis" class="form-control" id="">
                         </div>
                         <div class="mb-3">
                             <label for="">Tanggal</label>

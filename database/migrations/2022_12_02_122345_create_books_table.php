@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->text('isi');
-            $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('penulis');
             $table->date('tanggal');
             $table->string('cover');
             $table->boolean('tampil')->default(1);

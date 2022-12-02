@@ -14,7 +14,8 @@ class BerandaController extends Controller
     {
         $book = Book::where('tampil', 1)->get();
         $category = Category::all();
-        return view('beranda', compact('book', 'category'));
+        $total = Total::all();
+        return view('beranda', compact('book', 'category', 'total'));
     }
 
     public function kategori($id)
@@ -27,10 +28,14 @@ class BerandaController extends Controller
     public function read($id)
     {
         $book = Book::findOrFail($id);
-        Total::create([
-            'book_id' => $id,
-            'user_id' => Auth::user()->id,
-        ]);
-        return view('detail', compact('book'));
+        if (Total::where('book_id', $id)->where('user_id', Auth::user()->id)->exists()) {
+            return view('detail', compact('book'));
+        }else {
+            Total::create([
+                'book_id' => $id,
+                'user_id' => Auth::user()->id,
+            ]);
+            return view('detail', compact('book'));            
+        }
     }
 }

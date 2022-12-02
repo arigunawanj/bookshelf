@@ -23,16 +23,21 @@
                     <p>Tanggal : <span class="badge bg-warning">{{ $item->tanggal }}</span></p>
                     <h6 class="card-subtitle mb-2 text-muted">Kategori : <span class="badge bg-primary">{{ $item->category->name }}</span></h6>
                     <p class="card-text">{{ $item->isi }}</p>
-                    <p>Total Pembaca : <span class="badge bg-danger">{{ $item->total_pembaca }}</span></p>
+                    <p>Total Pembaca : <span class="badge bg-danger">{{ DB::table('totals')->where('book_id', $item->id)->count() }}</span></p>
                     <blockquote class="blockquote mb-2">
-                        <footer class="blockquote-footer"><cite title="Source Title">{{ $item->user->name }}</cite>
+                        <footer class="blockquote-footer"><cite title="Source Title">{{ $item->penulis }}</cite>
                         </footer>
                     </blockquote>
-                    @if (Total::where('book_id', $item->id)->exists())
-                    <a class="btn btn-warning">Buku Sudah Dibaca</a>                        
+                    @guest
+                    @if (Route::has('login'))
+                    @endif
+                    @else
+                    @if (DB::table('totals')->where('book_id', $item->id)->where('user_id', Auth::user()->id)->exists())
+                    <a class="btn btn-warning" href="read/{{ $item->id }}">Buku Sudah Dibaca</a>                        
                     @else
                     <a href="read/{{ $item->id }}" class="btn btn-primary">Baca Buku Ini</a>
                     @endif
+                    @endguest
                 </div>
             </div>
         @endforeach

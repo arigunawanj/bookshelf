@@ -46,8 +46,6 @@ class BookController extends Controller
         $file = $request->file('cover')->store('img');
 
         $data['cover'] = $file;
-        $data['user_id'] = Auth::user()->id;
-        // $data['total_pembaca'] = 1;
 
         Book::create($data);
 
@@ -92,13 +90,12 @@ class BookController extends Controller
             $file = $request->file('cover')->store('img');
             Storage::delete($book->cover);
             $data['cover'] = $file;
-            $data['user_id'] = Auth::user()->id;
             $book->update($data);
         } else {
             $book->update([
                 'judul' => $request->judul,
                 'isi'=> $request->isi,
-                'user_id' => Auth::user()->id,
+                'penulis' => $request->penulis,
                 'tanggal' => $request->tanggal,
                 'category_id' => $request->category_id
             ]);
