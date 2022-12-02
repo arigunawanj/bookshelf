@@ -44,12 +44,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/">Beranda</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/user">Data Pengguna</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/category">Data Kategori</a>
-                        </li>
+                        @if (Auth::user()->role == "Admin")
+                            <li class="nav-item">
+                                <a class="nav-link" href="/user">Data Pengguna</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/category">Data Kategori</a>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="/book">Data Buku</a>
                         </li>
