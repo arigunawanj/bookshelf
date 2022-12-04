@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\BerandaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FilterController;
+use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,8 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/', [BerandaController::class, 'Beranda']);
 Route::get('{id}', [BerandaController::class, 'kategori']);
+Route::post('beranda', [FilterController::class, 'store']);
+// Route::post('beranda', [FilterController::class, 'store']);
 
 
 
