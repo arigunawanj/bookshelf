@@ -4,6 +4,19 @@
     <div class="container">
         @guest
             @if (Route::has('login'))
+            <form action="{{ url('beranda') }}" method="post">
+                @csrf
+                <div class="mb-3">
+                    <label for="" class="form-label">Kategori</label>
+                    <select name="category_id" class="form-select" id="">
+                        <option selected value="">Semua Kategori</option>
+                        @foreach ($category as $data)
+                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-secondary mb-4">Submit</button>
+            </form>
             @endif
         @else
             <form action="{{ url('beranda') }}" method="post">
@@ -27,6 +40,7 @@
             </form>
         @endguest
 
+        {{-- filter tanpa class --}}
         <div class="dropdown mb-3">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
@@ -40,6 +54,7 @@
                 @endforeach
             </ul>
         </div>
+        
         <div class="row justify-content-center">
             @foreach ($book as $item)
                 @if (isset($dt))
